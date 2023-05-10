@@ -8,11 +8,21 @@ from datetime import datetime
 class BaseModel:
     """a class that defines all common attributes/methods for other classes"""
 
-    def __init__(self):
-        """instantiation of public instance attributes"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+        """instantiation of public instance attributes using *args, **kwargs arguments"""
+        if kwargs:
+            time_str = "%Y-%m-%dT%H:%M:%S.%f"
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    setattr(self, key, value)
+                if key == 'created_at':
+                    self.created_at = datetime.now()
+                if key == 'updated_at':
+                    self.update_at = self.created_at
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """returns a string format for the class"""
@@ -26,10 +36,11 @@ class BaseModel:
         """returns ta dictionary containing all keys/values of __dict__ of the instance"""
         new_dict = {}
         new_dict['__class__'] = self.__class__.__name__
-        new_dict['updated_at'] = self.updated_at.isoformat()
-        new_dict['created_at'] = self.created_at.isoformat()
 
         for key, value in self.__dict__.items():
-            new_dict[key] = value
+            if key == 'created_at' or key == 'updated_at':
+                new_dict[key] = value.isoformat()
+            else:
+                new_dict[key] = value
 
         return new_dict
