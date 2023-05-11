@@ -11,14 +11,11 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """instantiation of public instance attributes using *args, **kwargs arguments"""
         if kwargs:
-            time_str = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
                 if key != '__class__':
                     setattr(self, key, value)
-                if key == 'created_at':
-                    self.created_at = datetime.now()
-                if key == 'updated_at':
-                    self.update_at = self.created_at
+                if key == 'created_at' or key == 'updated_at':
+                    self.created_at = datetime.fromisoformat(value)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
