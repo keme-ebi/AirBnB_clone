@@ -10,7 +10,9 @@ class BaseModel:
     """a class that defines all common attributes/methods for other classes"""
 
     def __init__(self, *args, **kwargs):
-        """instantiation of public instance attributes using *args, **kwargs arguments"""
+        """instantiation of public instance attributes using\
+                *args, **kwargs arguments
+        """
         if kwargs:
             d_str = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
@@ -30,12 +32,16 @@ class BaseModel:
         return "[{}] ({}) {}".format(cl_name, self.id, self.__dict__)
 
     def save(self):
-        """updates the public instance attribute updated_at with the current datetime"""
+        """updates the public instance attribute updated_at\
+                with the current datetime
+        """
         self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
-        """returns ta dictionary containing all keys/values of __dict__ of the instance"""
+        """returns ta dictionary containing all keys/values of\
+                __dict__ of the instance
+        """
         new_dict = {}
         new_dict['__class__'] = self.__class__.__name__
 

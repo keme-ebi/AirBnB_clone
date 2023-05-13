@@ -3,11 +3,12 @@
 
 import json
 import os
-#from models.base_model import BaseModel
 
 
 class FileStorage:
-    """serializes instances to a JSON file and deserializes JSON file to instances"""
+    """serializes instances to a JSON file and\
+            deserializes JSON file to instances
+    """
     __file_path = "file.json"
     __objects = {}
 
@@ -33,14 +34,21 @@ class FileStorage:
             f.write(to_json)
 
     def reload(self):
-        """deserializes the JSON file to __objects(only if the JSON file
-            (__file_path) exists
+        """deserializes the JSON file to __objects\
+                (only if the JSON file(__file_path) exists
         """
         from models.base_model import BaseModel
+        from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.amenity import Amenity
+        from models.review import Review
 
-
+        cls_dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                   'State': State, 'Amenity': Amenity, 'Review': Review}
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as f:
                 from_json = json.load(f)
                 for k, v in from_json.items():
-                    self.new(BaseModel(**v))
+                    cls_name = v['__class__']
+                    self.new(cls_dic[cls_name](**v))

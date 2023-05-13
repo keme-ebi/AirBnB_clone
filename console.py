@@ -4,13 +4,18 @@
 import json
 import cmd
 from models.base_model import BaseModel
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     """Simple command processor that manages the AirBnB objects"""
     prompt = '(hbnb) '
-    hn_class = ['BaseModel']
+    hn_class = ['BaseModel', 'Place', 'State', 'City', 'Amenity', 'Review']
 
     def do_create(self, cl_name):
         """command that creates a new instance of BaseModel\
@@ -32,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split(' ')
         if not arg[0]:
             print("** class name missing **")
-        elif arg[0] != 'BaseModel':
+        elif arg[0] not in HBNBCommand.hn_class:
             print("** class doesn't exist **")
         elif len(arg) != 2:
             print("** instance id is missing **")
@@ -51,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split(' ')
         if not arg[0]:
             print("** class name missing **")
-        elif arg[0] != 'BaseModel':
+        elif arg[0] not in HBNBCommand.hn_class:
             print("** class doesn't exist **")
         elif len(arg) != 2:
             print("** instance id is missing **")
@@ -69,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances\
                 based on or not on the class name
         """
-        if cl_name.split() != 'BaseModel':
+        if cl_name.split() not in HBNBCommand.hn_class:
             print("** class doesn't exist **")
 
         new_list = []
@@ -88,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
         arg = args.split()
         if not arg[0]:
             print("** class name missing **")
-        elif arg[0] != 'BaseModel':
+        elif arg[0] not in HBNBCommand.hn_class:
             print("** class doesn't exist **")
         elif len(arg) == 1:
             print("** instance id missing **")
@@ -117,6 +122,7 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
