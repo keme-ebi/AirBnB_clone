@@ -494,8 +494,8 @@ it.\nUsage: create <ClassName>")
         """
             test the help with create
         """
-        msg = "Deletes an instance based on the class name and id.\
-\nUsage: destroy <ClassName> <id>"
+        msg = "Deletes an instance based on the class name and \
+id.\nChange is saved.\nUsage: destroy <ClassName> <id>"
         with patch('sys.stdout', new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help destroy"))
             self.assertEqual(msg, f.getvalue().strip())

@@ -309,6 +309,10 @@ it.\nUsage: create <ClassName>")
         print("Prints the string representation of an instance \
 based on the class name and id.\nUsage: show <ClassName> <id>.")
 
+    def help_destroy(self):
+        print("Deletes an instance based on the class name and id.\
+\nChange is saved.\nUsage: destroy <ClassName> <id>")
+
     def help_all(self):
         print("Prints all string representation of all instances.\
 \nUsage: all or all <ClassName>")
