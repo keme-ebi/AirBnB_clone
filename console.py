@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
 
         cmds = line.split()
 
-        if len(cmds) is 0:
+        if len(cmds) == 0:
             print("** class name missing **")
             return
 
