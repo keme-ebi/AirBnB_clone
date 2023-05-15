@@ -489,6 +489,7 @@ it.\nUsage: create <ClassName>")
         with patch('sys.stdout', new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help create"))
             self.assertEqual(msg, f.getvalue().strip())
+
     def test_help_destroy(self):
         """
             test the help with create
@@ -525,6 +526,7 @@ by adding or changing attribute values.\
         with patch('sys.stdout', new=StringIO()) as f:
             self.assertFalse(HBNBCommand().onecmd("help update"))
             self.assertEqual(msg, f.getvalue().strip())
+
 
 if __name__ == '__main__':
     unittest.main()
