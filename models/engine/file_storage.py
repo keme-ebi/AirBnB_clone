@@ -38,6 +38,7 @@ class FileStorage:
                 (only if the JSON file(__file_path) exists
         """
         from models.base_model import BaseModel
+        from models.city import City
         from models.user import User
         from models.place import Place
         from models.state import State
@@ -45,7 +46,8 @@ class FileStorage:
         from models.review import Review
 
         cls_dic = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                   'State': State, 'Amenity': Amenity, 'Review': Review}
+                   'State': State, 'Amenity': Amenity, 'Review': Review,
+                   'City': City}
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as f:
                 from_json = json.load(f)
