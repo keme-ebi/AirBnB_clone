@@ -4,7 +4,7 @@
 """
 
 import cmd
-import models
+from models import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.city import City
@@ -67,8 +67,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
 #        storage = FileStorage()
-        models.storage.reload()
-        obj = models.storage.all()
+        storage.reload()
+        obj = storage.all()
         key = cmds[0] + "." + cmds[1]
 
         try:
@@ -85,8 +85,8 @@ class HBNBCommand(cmd.Cmd):
         """
         obj_list = []
 #        storage = FileStorage()
-        models.storage.reload()
-        objs = models.storage.all()
+        storage.reload()
+        objs = storage.all()
 
         try:
             if len(line) != 0:
@@ -138,8 +138,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
         key = cmds[0] + "." + cmds[1]
-        models.storage.reload()
-        objs = models.storage.all()
+        storage.reload()
+        objs = storage.all()
 
         try:
             value = objs[key]
@@ -164,7 +164,7 @@ class HBNBCommand(cmd.Cmd):
             pass
 
         setattr(value, cmds[2], cmds[3])
-        models.storage.save()
+        storage.save()
 
     def do_count(self, line):
         """
@@ -177,8 +177,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        models.storage.reload()
-        objs = models.storage.all()
+        storage.reload()
+        objs = storage.all()
         count = 0
 
         for key in objs.keys():
@@ -210,8 +210,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
 #        storage = FileStorage()
-        models.storage.reload()
-        obj = models.storage.all()
+        storage.reload()
+        obj = storage.all()
 
         key = cmds[0] + "." + cmds[1]
 
@@ -221,7 +221,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-        models.storage.save()
+        storage.save()
 
     def emptyline(self):
         """
