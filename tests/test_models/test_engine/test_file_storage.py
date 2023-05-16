@@ -13,16 +13,16 @@ class TestFileStorage(unittest.TestCase):
     """Definition of test class for class FileStorage"""
     def setUp(self):
         """Sets up the resources required to run tests"""
-        if os.path.isfile('my_file.json'):
-            os.rename('my_file.json', 'tmp_file.json')
+        if os.path.isfile('file.json'):
+            os.rename('file.json', 'tmp_file.json')
         self.model1 = BaseModel()
 
     def tearDown(self):
         """Tears down the resources that have been used to run tests"""
-        if os.path.isfile('my_file.json'):
-            os.remove('my_file.json')
+        if os.path.isfile('file.json'):
+            os.remove('file.json')
         if os.path.isfile('tmp_file.json'):
-            os.rename('tmp_file.json', 'my_file.json')
+            os.rename('tmp_file.json', 'file.json')
         del self.model1
 
     def test_attributes_exist(self):
@@ -36,7 +36,7 @@ class TestFileStorage(unittest.TestCase):
 
     def test_attributes(self):
         """Test whether the type of FileStorage class attributes is correct"""
-        self.assertEqual(storage._FileStorage__file_path, 'my_file.json')
+        self.assertEqual(storage._FileStorage__file_path, 'file.json')
         self.assertIsInstance(storage._FileStorage__objects, dict)
 
     def test_all(self):
@@ -49,7 +49,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload(self):
         """Test that the reload method actually reloads objects from file"""
         self.model1.save()
-        self.assertTrue(os.path.isfile('my_file.json'))
+        self.assertTrue(os.path.isfile('file.json'))
         tmp_obj = BaseModel()
         tmp_id = 'BaseModel.' + tmp_obj.id
         tmp_obj.save()
