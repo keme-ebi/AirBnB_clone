@@ -20,16 +20,16 @@ from unittest.mock import patch
 
 def setUpModule():
     """Set up resources to be used in the test module"""
-    if os.path.isfile("my_file.json"):
-        os.rename("my_file.json", "tmp.json")
+    if os.path.isfile("file.json"):
+        os.rename("file.json", "tmp.json")
 
 
 def tearDownModule():
     """Tear down resources used in the test module"""
-    if os.path.isfile("my_file.json"):
-        os.remove("my_file.json")
+    if os.path.isfile("file.json"):
+        os.remove("file.json")
     if os.path.isfile("tmp.json"):
-        os.rename("tmp.json", "my_file.json")
+        os.rename("tmp.json", "file.json")
 
 
 class TestHBNBCommand(unittest.TestCase):
