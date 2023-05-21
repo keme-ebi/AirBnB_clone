@@ -16,8 +16,7 @@
 	border-radius: 4px;
 	margin-top: 10px;
 	margin-right: 30px;
-	margin-left: 77%;
-	outline: none;
+	float: right;
 }
 
 .filters button:hover {
