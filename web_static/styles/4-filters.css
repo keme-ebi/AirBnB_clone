@@ -6,7 +6,7 @@
 	border-radius: 4px;
 }
 
-.filter button {
+.filters button {
 	font-size: 18px;
 	background-color: #FF5A5F;
 	text-color: #FFFFFF;
@@ -18,6 +18,6 @@
 	outline: none;
 }
 
-.filter button:hover {
+.filters button:hover {
 	opacity: 90%;
 }
