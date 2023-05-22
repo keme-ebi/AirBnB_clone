@@ -46,3 +46,23 @@
 	margin-top: 3px;
 	margin-left: 40px;
 }
+
+.popover {
+	background-color: #FAFAFA;
+	width: 100%;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	display: none;
+}
+
+.popover li h2 {
+	font-size: 16px;
+}	
+
+li {
+	list-style-type: none;
+}
+
+.locations:hover .popover, .amenities:hover .popover{
+	display: block;
+}
